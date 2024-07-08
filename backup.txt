@@ -1,0 +1,17 @@
+{ "waf": {
+            "rules": [
+              {
+                "description": "This is a rule", 
+                "skip": false,
+                "type": "deny", 
+                "conditions": [
+                  {
+                    "type": "ip-match",
+                    "operator": "==",
+                    "value": "47.224.252.180"
+                  }
+                ]
+              }
+            ]
+          }
+        }
