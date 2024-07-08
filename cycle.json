@@ -94,8 +94,7 @@
                         }
                     ],
                     "disable": false
-                },
-                "waf": null
+                }
             },
             {
                 "default": true,
@@ -198,8 +197,7 @@
                         }
                     ],
                     "disable": false
-                },
-                "waf": null
+                }
             },
             {
                 "default": true,
@@ -236,8 +234,7 @@
                         }
                     ],
                     "disable": false
-                },
-                "waf": null
+                }
             },
             {
                 "default": true,
@@ -274,8 +271,8 @@
                         }
                     ],
                     "disable": false
-                },
-                "waf": null
+                }
+                
             }
         ]
          
