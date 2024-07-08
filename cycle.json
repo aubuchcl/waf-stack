@@ -11,6 +11,7 @@
         "ipv4": true,
         "ipv6": true,
         "type": "v1", 
+        "bind_host": false,
         "details": {
           "controllers": [
             {
@@ -259,8 +260,7 @@
                 }
                 
             }
-        ]
-         
+          ] 
         }
       }
     }    
