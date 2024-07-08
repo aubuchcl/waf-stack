@@ -1,21 +1,6 @@
 {
   "version": "1.0",
   "services": {
-    "discovery": {
-      "service": {
-        "high_availability": true,
-        "auto_update": true,
-        "enable": true
-      },
-      "config": {
-        "hosts": {
-          "somehost": {
-            "ipv4": ["193.23.52.1"],
-            "ipv6": []
-          }
-        }
-      }
-    },
     "loadbalancer": {
       "service": {
         "high_availability": true,
@@ -278,35 +263,7 @@
          
         }
       }
-    },
-    "scheduler": {
-      "config": {
-        "access_keys": [
-          { "ips": [], "name": "somekey", "secret": "supersecretkeyphrase" }
-        ],
-        "public": false
-      },
-      "service": {
-        "auto_update": true,
-        "enable": true,
-        "high_availability": true
-      }
-    },
-    "vpn": {
-        "config": {
-            "allow_internet": true,
-            "auth": {
-                "cycle_accounts": true,
-                "vpn_accounts": true,
-                "webhook": "https://someendpoint.com/auth"
-            }
-        },
-        "service": {
-            "enable": true,
-            "auto_update": true,
-            "high_availability": false
-        }
-    }
+    }    
   },
   "containers": {}
 }
