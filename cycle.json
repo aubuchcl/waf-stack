@@ -1,0 +1,334 @@
+{
+  "version": "1.0",
+  "services": {
+    "discovery": {
+      "service": {
+        "high_availability": true,
+        "auto_update": true,
+        "enable": true
+      },
+      "config": {
+        "hosts": {
+          "somehost": {
+            "ipv4": ["193.23.52.1"],
+            "ipv6": []
+          }
+        }
+      }
+    },
+    "loadbalancer": {
+      "service": {
+        "high_availability": true,
+        "auto_update": true,
+        "enable": true
+      },
+      "config": {
+        "ipv4": true,
+        "ipv6": true,
+        "type": "v1", 
+        "details": {
+          "controllers": [
+        {
+            "default": true,
+            "identifier": "default-80",
+            "transport": {
+                "mode": "http",
+                "config": {
+                    "performance": false,
+                    "verbosity": "normal",
+                    "ingress": {
+                        "port": 80
+                    },
+                    "timeouts": {
+                        "idle": "60s"
+                    },
+                    "extension": {
+                        "type": "http",
+                        "details": {
+                            "connections": {
+                                "max_idle_conns_per_connection": 5
+                            },
+                            "telemetry": {
+                                "max_trackable_urls": 150,
+                                "track_invalid_requests": null,
+                                "ignore_paths": null,
+                                "disable_router_metrics": true,
+                                "disable_url_tracking": true
+                            }
+                        }
+                    }
+                },
+                "routers": [
+                    {
+                        "match": {
+                            "domains": null,
+                            "internal_port": null,
+                            "path": null
+                        },
+                        "mode": "round-robin",
+                        "config": {
+                            "sticky_sessions": true,
+                            "destination_retries": 3,
+                            "destination_prioritization": null,
+                            "timeouts": {
+                                "destination_connection": "3s"
+                            },
+                            "tls": null,
+                            "extension": {
+                                "type": "http",
+                                "details": {
+                                    "redirect": {
+                                        "auto_https_redirect": true,
+                                        "remove_www": true,
+                                        "port": null,
+                                        "scheme": null,
+                                        "url": null
+                                    },
+                                    "forward": {
+                                        "scheme": "http",
+                                        "content_mod": null
+                                    },
+                                    "proxy": null,
+                                    "caching": null
+                                }
+                            }
+                        }
+                    }
+                ],
+                "disable": false
+            },
+            "waf": null
+        },
+        {
+            "default": true,
+            "identifier": "default-443",
+            "transport": {
+                "mode": "http",
+                "config": {
+                    "performance": false,
+                    "verbosity": "normal",
+                    "ingress": {
+                        "port": 443,
+                        "tls": {
+                            "enable": true
+                        }
+                    },
+                    "timeouts": {
+                        "idle": "60s"
+                    },
+                    "extension": {
+                        "type": "http",
+                        "details": {
+                            "connections": {
+                                "max_idle_conns_per_connection": 5
+                            },
+                            "telemetry": {
+                                "max_trackable_urls": 150,
+                                "track_invalid_requests": null,
+                                "ignore_paths": null,
+                                "disable_router_metrics": true,
+                                "disable_url_tracking": true
+                            }
+                        }
+                    }
+                },
+                "routers": [
+                    {
+                        "match": {
+                            "domains": null,
+                            "internal_port": [
+                                443,
+                                8443
+                            ],
+                            "path": null
+                        },
+                        "mode": "round-robin",
+                        "config": {
+                            "sticky_sessions": true,
+                            "destination_retries": 3,
+                            "destination_prioritization": null,
+                            "timeouts": {
+                                "destination_connection": "3s"
+                            },
+                            "tls": null,
+                            "extension": {
+                                "type": "http",
+                                "details": {
+                                    "redirect": null,
+                                    "forward": {
+                                        "scheme": "https",
+                                        "content_mod": null
+                                    },
+                                    "proxy": null,
+                                    "caching": null
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "match": {
+                            "domains": null,
+                            "internal_port": null,
+                            "path": null
+                        },
+                        "mode": "round-robin",
+                        "config": {
+                            "sticky_sessions": true,
+                            "destination_retries": 3,
+                            "destination_prioritization": null,
+                            "timeouts": {
+                                "destination_connection": "3s"
+                            },
+                            "tls": null,
+                            "extension": {
+                                "type": "http",
+                                "details": {
+                                    "redirect": {
+                                        "auto_https_redirect": false,
+                                        "remove_www": true,
+                                        "port": null,
+                                        "scheme": null,
+                                        "url": null
+                                    },
+                                    "forward": {
+                                        "scheme": "http",
+                                        "content_mod": null
+                                    },
+                                    "proxy": null,
+                                    "caching": null
+                                }
+                            }
+                        }
+                    }
+                ],
+                "disable": false
+            },
+            "waf": null
+        },
+        {
+            "default": true,
+            "identifier": "default-1194",
+            "transport": {
+                "mode": "tcp",
+                "config": {
+                    "performance": false,
+                    "verbosity": "low",
+                    "ingress": {
+                        "port": 1194
+                    },
+                    "timeouts": {
+                        "idle": "10m"
+                    }
+                },
+                "routers": [
+                    {
+                        "match": {
+                            "domains": null,
+                            "internal_port": null,
+                            "path": null
+                        },
+                        "mode": "round-robin",
+                        "config": {
+                            "sticky_sessions": true,
+                            "destination_retries": 3,
+                            "destination_prioritization": null,
+                            "timeouts": {
+                                "destination_connection": "3s"
+                            },
+                            "tls": null
+                        }
+                    }
+                ],
+                "disable": false
+            },
+            "waf": null
+        },
+        {
+            "default": true,
+            "identifier": "default-8812",
+            "transport": {
+                "mode": "tcp",
+                "config": {
+                    "performance": false,
+                    "verbosity": "low",
+                    "ingress": {
+                        "port": 8812
+                    },
+                    "timeouts": {
+                        "idle": "20s"
+                    }
+                },
+                "routers": [
+                    {
+                        "match": {
+                            "domains": null,
+                            "internal_port": null,
+                            "path": null
+                        },
+                        "mode": "round-robin",
+                        "config": {
+                            "sticky_sessions": false,
+                            "destination_retries": 3,
+                            "destination_prioritization": null,
+                            "timeouts": {
+                                "destination_connection": "3s"
+                            },
+                            "tls": null
+                        }
+                    }
+                ],
+                "disable": false
+            },
+            "waf": null
+        }
+    ],
+          "waf": {
+            "rules": [
+              {
+                "description": "This is a rule", 
+                "skip": false,
+                "type": "deny", 
+                "conditions": [
+                  {
+                    "type": "ip-match",
+                    "operator": "==",
+                    "value": "47.224.252.180"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "scheduler": {
+      "config": {
+        "access_keys": [
+          { "ips": [], "name": "somekey", "secret": "supersecretkeyphrase" }
+        ],
+        "public": false
+      },
+      "service": {
+        "auto_update": true,
+        "enable": true,
+        "high_availability": true
+      }
+    },
+    "vpn": {
+        "config": {
+            "allow_internet": true,
+            "auth": {
+                "cycle_accounts": true,
+                "vpn_accounts": true,
+                "webhook": "https://someendpoint.com/auth"
+            }
+        },
+        "service": {
+            "enable": true,
+            "auto_update": true,
+            "high_availability": false
+        }
+    }
+  },
+  "containers": {}
+}
