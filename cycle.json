@@ -273,6 +273,18 @@
                     "value": "47.224.252.180"
                   }
                 ]
+              },
+              {
+                "description": "This is a rule", 
+                "skip": false,
+                "type": "deny", 
+                "conditions": [
+                  {
+                    "type": "ip-match",
+                    "operator": "==",
+                    "value": "2600:6c4e:113f:93df:84d1:4dfd:9f81:8947"
+                  }
+                ]
               }
             ]
           }
