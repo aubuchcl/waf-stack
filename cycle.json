@@ -3,7 +3,7 @@
   "services": {
     "loadbalancer": {
       "service": {
-        "high_availability": true,
+        "high_availability": false,
         "auto_update": true,
         "enable": true
       },
